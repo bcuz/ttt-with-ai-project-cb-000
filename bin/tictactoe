@@ -1,3 +1,30 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts 'player type: 0, 1, or 2'
+
+input = gets.strip
+
+if input == '2'
+  x = Game.new
+  x.board.display
+  x.play
+
+elsif input == '1'
+  puts 'who will go first, c or h'
+  first = gets.strip
+
+  if first == 'h'
+  x = Game.new(player_1 = Players::Human.new('X'), player_2 = Players::Computer.new('O'))
+else
+  x = Game.new(player_1 = Players::Computer.new('X'), player_2 = Players::Human.new('O'))
+
+end
+  x.board.display
+  x.play
+else
+  x = Game.new(player_1 = Players::Computer.new('X'), player_2 = Players::Computer.new('O'))
+  x.board.display
+  x.play
+end

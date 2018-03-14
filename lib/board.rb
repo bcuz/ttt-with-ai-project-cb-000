@@ -32,16 +32,28 @@ class Board
 end
 
   def turn_count
-    # can maybe make more concise
-    count = 0
-    @cells.each do |item|
+    all = @cells.collect do |item|
       if item == "X" or item == 'O'
-      count += 1
+        item
       end
     end
+    all.compact.size
+end
 
-    count
+def taken?(location)
+  @cells[location.to_i - 1] != " "
+end
 
+def valid_move?(input)
+  input.to_i.between?(1,9) && !taken?(input)
+
+end
+
+def update(input, player)
+  if valid_move?(input)
+    @cells[input.to_i - 1] = player.token
   end
+
+end
 
 end
